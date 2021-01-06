@@ -18,7 +18,6 @@ public class FibonacciCounter extends RecursiveTask<Long> {
             FibonacciCounter firstHalf = new FibonacciCounter(end-1);
             firstHalf.fork();
             FibonacciCounter secondHalf = new FibonacciCounter(end-2);
-            secondHalf.fork();
             long secondValue = secondHalf.compute();
             return firstHalf.join() + secondValue;
         }
