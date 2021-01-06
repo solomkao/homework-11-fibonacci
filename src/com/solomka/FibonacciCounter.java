@@ -5,17 +5,10 @@ import com.solomka.examplesfromnet.MyFork;
 import java.util.concurrent.RecursiveTask;
 
 public class FibonacciCounter extends RecursiveTask<Long> {
-    private int begin;
     private int end;
     private final int numberOfCores = Runtime.getRuntime().availableProcessors();
 
     public FibonacciCounter(int end) {
-        this.end = end;
-        this.begin = 1;
-    }
-
-    public FibonacciCounter(int begin, int end) {
-        this.begin = begin;
         this.end = end;
     }
 
@@ -30,14 +23,6 @@ public class FibonacciCounter extends RecursiveTask<Long> {
             secondHalf.fork();
             long secondValue = secondHalf.compute();
             return firstHalf.join() + secondValue;
-
-
-//        if (end <= 1) {
-//            return (long) end;
-//        }else {
-//            Long first = new FibonacciCounter(end - 1).fork().join();
-//            Long second = new FibonacciCounter(end - 2).fork().join();
-//            return first + second;
         }
     }
 
