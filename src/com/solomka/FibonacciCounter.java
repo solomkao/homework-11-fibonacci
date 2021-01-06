@@ -1,7 +1,5 @@
 package com.solomka;
 
-import com.solomka.examplesfromnet.MyFork;
-
 import java.util.concurrent.RecursiveTask;
 
 public class FibonacciCounter extends RecursiveTask<Long> {
