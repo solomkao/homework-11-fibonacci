@@ -14,16 +14,16 @@ public class ForkJoinPoolExample {
         long correctResult = 75025L;
         int number = 25;
         System.out.println("\tForkJoinPool implementation");
-        ForkJoinPool pool = ForkJoinPool.commonPool();
+        ForkJoinPool pool = new ForkJoinPool();
         long startTime = System.nanoTime();
         long result = pool.invoke(new FibonacciCounter(number));
-        System.out.printf("Spent time: %d ms%n", (System.nanoTime() - startTime) / 1000000);
+        System.out.println("Spent time: " + ((System.nanoTime() - startTime) / 1_000_000) + " ms");
         System.out.println("Result: " + result + " is correct -> " + ((result == correctResult) ? "Yes" : "No"));
 
         System.out.println("\tSimple implementation");
         startTime = System.nanoTime();
         long anotherResult = FibonacciCounter.findFibonacci(number);
-        System.out.printf("Spent time: %d ms%n", (System.nanoTime() - startTime) / 1000000);
+        System.out.println("Spent time: " + ((System.nanoTime() - startTime) / 1_000_000) + " ms");
         System.out.println("Result: " + anotherResult + " is correct -> " + ((result == correctResult) ? "Yes" : "No"));
 
     }

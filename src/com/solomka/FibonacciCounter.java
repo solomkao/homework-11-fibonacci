@@ -15,11 +15,12 @@ public class FibonacciCounter extends RecursiveTask<Long> {
         if (end <= numberOfCores) {
             return findFibonacci(end);
         } else {
-            FibonacciCounter firstHalf = new FibonacciCounter(end-1);
+            FibonacciCounter firstHalf = new FibonacciCounter(end - 1);
             firstHalf.fork();
-            FibonacciCounter secondHalf = new FibonacciCounter(end-2);
+            FibonacciCounter secondHalf = new FibonacciCounter(end - 2);
             long secondValue = secondHalf.compute();
-            return firstHalf.join() + secondValue;
+            long firstValue = firstHalf.join();
+            return firstValue + secondValue;
         }
     }
 
